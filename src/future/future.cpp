@@ -9,11 +9,12 @@
 */
 #include <iostream>
 #include <functional>
-#include <future>
-#include <thread>
-#include <chrono>
 #include <cstdlib>
 #include <string>
+
+#include <future> //promise && futrue
+#include <thread> //thread
+#include <chrono> //milliseconds
 
 void thread_set_promise(std::promise<int>& promiseObj)
 {
