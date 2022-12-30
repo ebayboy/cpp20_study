@@ -3,7 +3,10 @@ cpp20_study
 
 # c20协程(https://zhuanlan.zhihu.com/p/569480618)
 # advanced-cpp20-programming
+# [现代C++](https://changkun.de/modern-cpp/zh-cn/00-preface/)
 
+# DONE
++ [C++之future和promise](https://zhuanlan.zhihu.com/p/595537357)
 
 
 # TODO:
