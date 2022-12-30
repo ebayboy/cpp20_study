@@ -1,39 +1,37 @@
 
-/** @file  futureIsPrime.cpp
-*  @note
-*  @brief
-*  @author
-*  @date   2019-8-15
-*  @note
-*  @history
-*  @warning
-*/
-// future example
 #include <iostream>       // std::cout
 #include <future>         // std::async, std::future
 #include <chrono>         // std::chrono::milliseconds
 
-// a non-optimized way of checking for prime numbers:
+//std::async就是异步编程的高级封装，封装了std::future的操作，基本上可以代替std::thread 的所有事情。
+//素数: 除本身的绝对值外、不可能为大于1的整数除尽的数。
 bool is_prime (int x)
 {
-    for (int i = 2; i < x; ++i) if (x % i == 0) return false;
+    for (int i = 2; i < x; ++i)
+        if (x % i == 0)
+            return false;
+
     return true;
 }
 
+//异步计算444444443是否为素数
 int main ()
 {
-    // call function asynchronously:
-    std::future<bool> fut = std::async (is_prime, 444444443);
+    int num = 444444443;
 
-    // do something while waiting for function to set future:
+    std::future<bool> fut = std::async (is_prime, num);
+    std::chrono::milliseconds span(100);
+
     std::cout << "checking, please wait";
-    std::chrono::milliseconds span (100);
+
+    //每100ms检查是否完成
     while (fut.wait_for(span) == std::future_status::timeout)
         std::cout << '.' << std::flush;
 
+    //获取函数返回值
     bool x = fut.get();     // retrieve return value
 
-    std::cout << "\n444444443 " << (x ? "is" : "is not") << " prime.\n";
+    std::cout << "\n" << num << (x ? " is " : " is not ") << "prime\n";
 
     return 0;
 }
