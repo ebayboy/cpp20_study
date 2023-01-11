@@ -31,6 +31,7 @@ int main()
 
     std::thread t(&thread_set_promise, std::ref(promiseObj));
     std::cout << futureObj.get() << std::endl;
+
     t.join();
 
     std::cout << "t.join done!\n";
