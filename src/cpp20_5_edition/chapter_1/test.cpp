@@ -42,21 +42,12 @@ int main(int argc, char **argv)
 	int i1 { static_cast<int>(f1) };
 	cout << "i1:" << i1 << endl;
 
-	//inf(无穷) && nan(非数字)
+	//inf(无穷) && nan(非数字, 例如: 0/0)
 	float i3 { numeric_limits<float>::infinity() };
-	float i4 { 3.14f };
-	float i2 { i4 };
-	if (isnan( 3.14f )) {
-		cout << "isnan!\n";
-	} else {
-		cout << "isnan : false!\n";
-	}
-	if (isinf(i2)) {
-		cout << "isinf!\n";
-	} else {
-		cout << "isinf : false\n";
-	}
-	cout << "i2:" << i2 << endl;
+	float i4 {}, i5{};
+	float i2 { i4/i5 };
+	cout << "i2 [" << i2 << "] isnan:" << isnan(i2) << " isinf:" << isinf(i2) << endl;
+	cout << "i3:" << i3 << " isinf:" << isinf(i3) << endl;
 
 	return 0;
 }
