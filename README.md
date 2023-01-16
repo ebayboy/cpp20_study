@@ -3,8 +3,13 @@ cpp20_study
 
 # c20协程(https://zhuanlan.zhihu.com/p/569480618)
 # advanced-cpp20-programming
++ [github C++开源项目排行榜](https://www.githubs.cn/top/C%2B%2B)
++ [996icu](https://github.com/996icu/996.ICU/blob/master/README_CN.md)
++ [C++面试知识总结](https://github.com/huihut/interview)
++ [CPlusPlusThings]（https://github.com/Light-City/CPlusPlusThings）
 + [现代C++](https://changkun.de/modern-cpp/zh-cn/00-preface/)
 + [spodlog用法](https://blog.csdn.net/haojie_superstar/article/details/89383433?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-19.control&dist_request_id=1328730.643.16167433128441371&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-19.control)
++ [leecode cpp](https://github.com/haoel/leetcode/tree/master/algorithms/cpp)
 
 
 # DONE
