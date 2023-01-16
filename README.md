@@ -3,7 +3,9 @@ cpp20_study
 
 # c20协程(https://zhuanlan.zhihu.com/p/569480618)
 # advanced-cpp20-programming
-# [现代C++](https://changkun.de/modern-cpp/zh-cn/00-preface/)
++ [现代C++](https://changkun.de/modern-cpp/zh-cn/00-preface/)
++ [spodlog用法](https://blog.csdn.net/haojie_superstar/article/details/89383433?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-19.control&dist_request_id=1328730.643.16167433128441371&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-19.control)
+
 
 # DONE
 + [C++之future和promise](https://zhuanlan.zhihu.com/p/595537357)
@@ -32,4 +34,14 @@ cpp20_study
 ## 传统安全网关（nginx + lua + cpp)
 	+ 负载均衡
 	+ WAF
+
+
+## TODO:
+	google test 压测 && 单元测试
+
+## 手脚架：
+	+ [My编程脚手架](git@github.com:ebayboy/cpp_frame.git)
+	+ benchmark
+	+ gtest
+
 
