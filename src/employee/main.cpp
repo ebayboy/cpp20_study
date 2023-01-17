@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	e.salary = 8000;
 
 	cout << "e.firstInitial:" << e.firstInitial << endl;
-
+	
 	return 0;
 }
 
