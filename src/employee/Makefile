@@ -5,6 +5,7 @@ main: employee.o main.o
 	g++ -o $@ $^
 
 main.o: main.cpp
+	g++ ${CXXFLAGS} -xc++-system-header iostream
 	g++ ${CXXFLAGS} -o $@ -c $^
 
 employee.o: employee.cpp
