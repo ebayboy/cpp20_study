@@ -16,9 +16,13 @@ cpp20_study
 
 
 # TODO:
++ study ngx_cpp_module
++ study ngx_http_cppjieba_module
++ stream + lua
 + nginx + cpp20开发
 + cpp20 tcp 协程并发服务
 + cpp20 http 协程并发服务
+
 + dpdk + cpp开发
 + 学习handy网络库, 成为开源贡献者
 + 学习skynet
