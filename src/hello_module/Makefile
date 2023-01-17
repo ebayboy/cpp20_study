@@ -4,10 +4,10 @@
 main: hello.o main.o
 	g++ -o main main.o hello.o
 
-#main.o 会依赖 gcm.cache/smd.hello.gcm
 main.o : main.cpp 
 	g++ -fPIC -fmodules-ts -std=c++20 -o main.o -c main.cpp
 
+# build hello module
 hello.o : hello.cpp
 	g++ -fPIC -fmodules-ts -std=c++20 -o hello.o -c hello.cpp
 
