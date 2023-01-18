@@ -27,6 +27,12 @@ cpp20_study
 + 学习handy网络库, 成为开源贡献者
 + 学习skynet
 
+# 代码行数
++ handy: 2444
++ skynet: 核心代码5590行, 2000行C代码service, 3000行lua service
++ nginx 20w, http 10w
++ dpvs: 核心代码51811
+
 # 方向
 ## 负载均衡
 	+ c/cpp(lua没用)
@@ -35,6 +41,8 @@ cpp20_study
 	+ (NLB): dpdk实现, 支持会话保持
 	+ L4/L7前置物理机: dpdk
 	+ 容器： dpdk在容器里跑意义不大
+	+ 阿里云ALB只支持http/https， 不支持tcp（推测只用了nginx的7层) , NLB用了dpdk
+    + 京东云ALB支持http/https/tcp/udp/tls等(用了nignx的4/7层）, NLB用了dpdk
 
 ## WAF
 	+ nginx + lua

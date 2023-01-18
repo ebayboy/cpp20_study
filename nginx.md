@@ -1,4 +1,13 @@
 
+# nginx代码行数
++ 总代码20万行
++ core: 2.7w
++ event: 1.8w
++ mail: 1w
++ os: 1.2w
++ http: 10w
++ stream: 1.9w
+
 # nginx能干什么
 + http反向代理，正向代理
 + tcp 反向代理
@@ -13,7 +22,6 @@
 + nginx-upsync-module: For http protocol. nginx-upsync-module, sync upstreams from consul or etcd and so on, dynamiclly modify backend-serve…
 + nginx_tcp_proxy_module: add the feature of tcp proxy with nginx, with health check and status monitor
 + nginx-push-stream-module
-
 + nginx-module-vts: Nginx virtual host traffic status module
 
 
