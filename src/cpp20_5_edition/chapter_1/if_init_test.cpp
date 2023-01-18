@@ -8,7 +8,7 @@
 **************************************************************************/
 
 #include <iostream>
-#include <format>
+#include <fmt/core.h>
 
 using namespace std;
 
@@ -18,8 +18,16 @@ int main(int argc, char **argv)
 		cout << "ok\n";
 	}
 	
-	string s = std::format("{} {}!", "Hello", "world", "something");
-	cout << "s:"  << s << endl;
+	string s = fmt::format("{} {}!", "Hello", "world", "something");
+	fmt::print("s:{}", s);
+
+	for (i = 0; i < count; ++i) {
+		
+	}
+
+	for (int i = 0; i < count; ++i) {
+		
+	}
 
 	return 0;
 }
