@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <vector>
 #include <exception>
+#include <charconv>
+
 
 using namespace std;
 
@@ -101,27 +103,29 @@ int main(int argc, char **argv)
     size_t idx { 0 };
     fmt::print("s3:{} idx:{}\n", stoi(s3, &idx, 16), idx);
 
+	//转换失败， 抛出异常, 一定要catch
     string s4 { "xxe" };
     int s4_i { 0 };
     try
     {
         s4_i = stoi(s4);
     }
-catch (const std::length_error& e)
-{
-    std::cout << e.what();
-}
-catch (const std::out_of_range& e)
-{
-    std::cout << e.what();
-}
-catch (const std::exception& e)
-{
-    std::cout << e.what();
-}
+	catch (const std::invalid_argument& e)
+    {
+		fmt::print("invalid_argument:{}\n", e.what());
+    }
+    catch (const std::out_of_range& e)
+    {
+		fmt::print("out_of_range:{}\n", e.what());
+    }
+    catch (const std::exception& e)
+    {
+		fmt::print("exception:{}\n", e.what());
+    }
+    fmt::print("s4_i:{}\n", s4_i);
 
-fmt::print("s4_i:{}\n", s4_i);
 
-return 0;
+
+    return 0;
 }
 
