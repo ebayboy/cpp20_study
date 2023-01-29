@@ -49,9 +49,12 @@ int main(int argc, char **argv)
 	double d { 3.1415/2.3 };
 	cout << format("|{:12g}|", d) << endl;
 	cout << format("|{:12.2}|", d) << endl; //1.4
-	cout << format("|{:12e}|", d) << endl;
-	cout << format("2:{0}.{1}f", 12, 3, d) << endl;
+	cout << format("|{:12e}|", d) << endl;  //1.365870e+00
+	cout << format("|{2:{0}.{1}}|", 12, 3, d) << endl; //1.37
 
+	// %05d格式
+	cout << format("|{:05d}|", i) << endl;
+	
 	return 0;
 }
 
