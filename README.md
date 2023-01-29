@@ -13,6 +13,12 @@ cpp20_study
 + [9大web服务框架](https://www.linuxlinks.com/free-open-source-cplusplus-web-frameworks/)
 + [C++之future和promise](https://zhuanlan.zhihu.com/p/595537357)
 
+## 近期TODO：
++ cpp adv 5
++ drogon使用方法
++ drogon架构
++ drogon详细代码走读
+
 # TODO:
 + drogon学习
 + lua学习
