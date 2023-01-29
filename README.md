@@ -33,7 +33,7 @@ cpp20_study
 + nginx 20w, http 10w
 + dpvs: 核心代码51811
 
-# 方向
+# 产品方向
 ## 负载均衡
 	+ c/cpp(lua没用)
 	+ (ALB)docker L7: nginx
@@ -66,5 +66,8 @@ cpp20_study
 	+ C++ server
 	+ lua 在skynet game server开发中也有应用
 
+## 技术方向：
+	+ skynet C + lua修炼
+	+ drogon C++14/17/20修炼
 
 
