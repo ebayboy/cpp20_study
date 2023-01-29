@@ -124,7 +124,22 @@ int main(int argc, char **argv)
     }
     fmt::print("s4_i:{}\n", s4_i);
 
+	//低级转换: to_chars
+	string out(50, ' ');
+	auto [ptr, error] { to_chars(out.data(), out.data() + out.size(), 3.1415926) }; //结构化绑定
+	if (error == errc {}) {
+		fmt::print("out:{} size:{}\n", out, out.size());
+	}
 
+	//低级转换: from_chars
+	double val2 {0};
+	string sv2 = "1.1234";
+	auto [ptr2, ec2] { from_chars(sv2.data(), sv2.data() + sv2.size(), val2) };
+	if (ec2 == errc {}) {
+		cout << "val2:" << val2 << endl;
+	}
+
+	//注意：to_chars && from_chars用try catch捕捉异常
 
     return 0;
 }
