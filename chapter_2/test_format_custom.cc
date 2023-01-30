@@ -17,7 +17,7 @@ class KeyValue
 {
 	public:
 		KeyValue(string_view key, int value) : m_key {key}, m_value {value} { /* pass */ };
-		const string & getKey() const { return m_key; }; //TODO: 第二个const的含义
+		const string & getKey() const { return m_key; }; //TODO: 第二个const的含义, 任何不会修改数据的成员函数都应该声明为const函数
 		int getValue() const { return m_value; }; 
 
 	private:
