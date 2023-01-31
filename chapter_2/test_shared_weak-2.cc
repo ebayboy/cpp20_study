@@ -30,6 +30,13 @@ void useSimple(weak_ptr<Simple>& weak_simple)
 	}
 }
 
+/*
+construct...10
+share_simple: 10 use_count:1
+useSimple alive! m_data:10 use_count:2
+destruct! 10
+useSimple freed!
+*/
 int main(int argc, char **argv)
 {
 	auto share_simple { make_shared<Simple>(10) };
