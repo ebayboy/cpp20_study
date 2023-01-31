@@ -53,26 +53,39 @@ void test_aliasing()
 	auto aliasing { shared_ptr<int> { foo, f1.get() } };
 }
 
+/*
+test_aliasing2:72 s1.cnt:1 foo.cnt:1
+test_aliasing2:77 after tm3:2 s1.cnt:2 foo.cnt:1
+Foo destruct:42
+test_aliasing2:81 after tm3:2 s1.cnt:2 foo.cnt:0
+test_aliasing2:84 after tm3:1 s1.cnt:0 foo.cnt:0
+destruct age:0
+test_aliasing2:87 after tm3:0 s1.cnt:0 foo.cnt:0
+*/
 void test_aliasing2()
 {
 	//别名 aliasing
 	auto foo { make_shared<Foo>(42) };
 	auto s1 { make_shared<Sample>() };	
-
+	//此时： s1.cnt:1 foo.cnt:1
 	fmt::print("{}:{} s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
 
-	//auto aliasing { shared_ptr<Sample> { foo, s1.get() } };
-	auto aliasing { shared_ptr<Foo> { s1, foo.get() } };
-	fmt::print("{}:{} after aliasing s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+	//tmp3 增加了s1的引用计数，同时要求foo的原始指针释放, 保证了释放foo前先释放原始指针
+	auto tmp3 { shared_ptr<Foo> { s1, foo.get() } };
+	//此时: tm3:2 s1.cnt:2 foo.cnt:1
+	fmt::print("{}:{} after tm3:{} s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, tmp3.use_count(), s1.use_count(), foo.use_count());
 
 	foo.reset();
-	fmt::print("{}:{} after foo.reset s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
-
-	aliasing.reset();
-	fmt::print("{}:{} after aliasing.reset s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+	fmt::print("{}:{} after tm3:{} s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, tmp3.use_count(), s1.use_count(), foo.use_count());
+	//tm3:2 s1.cnt:2 foo.cnt:0
 
 	s1.reset();
-	fmt::print("{}:{} after s1.reset s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+	fmt::print("{}:{} after tm3:{} s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, tmp3.use_count(), s1.use_count(), foo.use_count());
+	//tm3:1 s1.cnt:0 foo.cnt:0
+
+	//tm3:0 s1.cnt:0 foo.cnt:0
+	tmp3.reset();
+	fmt::print("{}:{} after tm3:{} s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, tmp3.use_count(), s1.use_count(), foo.use_count());
 }
 
 void closefp(FILE *fp)
