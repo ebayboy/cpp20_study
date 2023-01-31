@@ -34,6 +34,14 @@ private:
     int age {0};
 };
 
+class Foo
+{
+public:
+	Foo (int value) : m_data { value }  { cout << "Foo construct:" << value << endl; };
+	~Foo() { cout << "Foo destruct:" << m_data << endl; };
+	int m_data;
+};
+
 void closefp(FILE *fp)
 {
     if (fp != nullptr)
@@ -58,6 +66,7 @@ int main(int argc, char **argv)
     {
         cout << "File opened!\n";
     }
+	s1.reset(); //手动释放s1
 
     //origin pointer
     Sample *s2 { new Sample{} };
@@ -69,6 +78,33 @@ int main(int argc, char **argv)
     delete s2;
     //delete s3; //二次释放crash
 
+	//智能指针二次释放没问题
+	auto s4 { make_shared<Sample>() };
+	s4->setAge(4);
+	auto s5 { s4 };
+
+	cout << "s4 reset...\n";
+	s4.reset(); //由于引用技术不为0， 此处不释放
+	cout << "s4 reset done!\n";
+
+	cout << "s5 reset...\n";
+	s5.reset(); //真正释放s4 && s5
+	cout << "s5 reset done!\n";
+
+	//两个智能指针指向同一个原始指针
+	Sample *mys1 { new Sample{} };
+	mys1->setAge(6);
+	shared_ptr<Sample> sp1 { mys1 };
+	//shared_ptr<Sample> sp2 { mys1 }; //两次释放会crash， 安全的操作是创建shared_ptr的副本
+	shared_ptr<Sample> sp2 { sp1 };  //shared_ptr的副本是安全的操作方式
+
+	//别名 aliasing
+	auto f1 { make_shared<int>(10) };	
+	cout << "f1:" << *f1 << endl;
+	auto foo { make_shared<Foo>(42) };
+	cout << "foo.m_data:" << foo->m_data << endl;
+	//auto aliasing { shared_ptr<int> { foo, &foo->m_data } };
+	auto aliasing { shared_ptr<int> { foo, f1 } };
 
     return 0;
 }
