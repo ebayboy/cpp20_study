@@ -42,6 +42,39 @@ public:
 	int m_data;
 };
 
+void test_aliasing()
+{
+	//别名 aliasing
+	auto f1 { make_shared<int>(10) };	
+	cout << "f1:" << *f1 << endl;
+	auto foo { make_shared<Foo>(42) };
+	cout << "foo.m_data:" << foo->m_data << endl;
+	//auto aliasing { shared_ptr<int> { foo, &foo->m_data } };
+	auto aliasing { shared_ptr<int> { foo, f1.get() } };
+}
+
+void test_aliasing2()
+{
+	//别名 aliasing
+	auto foo { make_shared<Foo>(42) };
+	auto s1 { make_shared<Sample>() };	
+
+	fmt::print("{}:{} s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+
+	//auto aliasing { shared_ptr<Sample> { foo, s1.get() } };
+	auto aliasing { shared_ptr<Foo> { s1, foo.get() } };
+	fmt::print("{}:{} after aliasing s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+
+	foo.reset();
+	fmt::print("{}:{} after foo.reset s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+
+	aliasing.reset();
+	fmt::print("{}:{} after aliasing.reset s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+
+	s1.reset();
+	fmt::print("{}:{} after s1.reset s1.cnt:{} foo.cnt:{}\n", __func__, __LINE__, s1.use_count(), foo.use_count());
+}
+
 void closefp(FILE *fp)
 {
     if (fp != nullptr)
@@ -54,6 +87,13 @@ void closefp(FILE *fp)
 
 int main(int argc, char **argv)
 {
+	//test_aliasing();
+
+	test_aliasing2();
+
+	return 0;
+
+
     //shared_ptr + old C
     auto s1 { make_shared<Sample>() };
     FILE *fp { fopen("data.txt", "w") };
@@ -97,14 +137,6 @@ int main(int argc, char **argv)
 	shared_ptr<Sample> sp1 { mys1 };
 	//shared_ptr<Sample> sp2 { mys1 }; //两次释放会crash， 安全的操作是创建shared_ptr的副本
 	shared_ptr<Sample> sp2 { sp1 };  //shared_ptr的副本是安全的操作方式
-
-	//别名 aliasing
-	auto f1 { make_shared<int>(10) };	
-	cout << "f1:" << *f1 << endl;
-	auto foo { make_shared<Foo>(42) };
-	cout << "foo.m_data:" << foo->m_data << endl;
-	//auto aliasing { shared_ptr<int> { foo, &foo->m_data } };
-	auto aliasing { shared_ptr<int> { foo, f1 } };
 
     return 0;
 }
