@@ -14,6 +14,7 @@ class A {
 
 #if 1
 		//调用显示拷贝构造函数， 只拷贝了m_age
+		// demo输入： m_age:10 m_data:0	
 		A(A const &a) 
 		{ 
 			m_age = a.m_age;
@@ -54,6 +55,8 @@ int main(int argc, char **argv)
 	a.setData(20);
 
 	A b { a };
+	//调用显示拷贝构造函数： m_age:10 m_data:0
+	//调用默认拷贝构造函数： m_age:10 m_data:20
 	fmt::print("m_age:{} m_data:{}\n", b.getAge(), b.getData());
 
 	return 0;
