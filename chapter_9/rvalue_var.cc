@@ -29,6 +29,10 @@ int main(int argc, char **argv)
 
 	fmt::print("i:{} c:{}\n", i, c);
 
+	//改变右值引用,  将3的右值给c
+	c = 3;
+	fmt::print("i:{} c:{}\n", i, c);
+
 	cout <<"r1=========\n";
 	A r1 = A();  //错误，无名临时变量 A() 是右值，因此不能初始化左值引用 r1
 	r1.setName("r1");
@@ -38,11 +42,16 @@ int main(int argc, char **argv)
 	A && r2 = std::move(r1); 
 	r2.setName("r2"); 
 
+	//改变右值引用, 改变右值引用后， 之前的右值r1会调用析构函数释放掉
+	cout << "change r2 right value ref..." << endl;	
+	r2 = A();
+	r2.setName("r2-2"); 
+
 	cout <<"r3=========\n";
 	A r3 = r1; //相当于复制了一份r1
 	r3.setName("r3");
 
-	cout <<"done=========\n";
+	cout <<"done =========\n";
 
 	return 0;
 }
