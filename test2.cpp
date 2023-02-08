@@ -6,8 +6,8 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-	string s { fmt::format("my {} is {}", "age", 24) };
-	fmt::print("s: {}\n", s);
+
+	std::print("{} {}\n", 1, "hello");
 
 	return 0;
 }
