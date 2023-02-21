@@ -1,0 +1,8 @@
+cmake_minimum_required (VERSION 2.8)                                                                 
+project (sanitizer)                                                                                  
+set(CMAKE_CXX_FLAGS "-g -fsanitize=leak -fsanitize=address -fno-omit-frame-pointer")                    
+add_executable(sanitizer_stack_overflow src/sanitizer_stack_overflow.cpp) 
+add_executable(sanitizer_global_buffer_overflow src/sanitizer_global_buffer_overflow.cpp) 
+add_executable(sanitizer_heap_overflow src/sanitizer_heap_overflow.cpp) 
+add_executable(sanitizer_memory_leaks src/sanitizer_memory_leaks.cpp) 
+add_executable(sanitizer_use_after_free src/sanitizer_use_after_free.cpp) 

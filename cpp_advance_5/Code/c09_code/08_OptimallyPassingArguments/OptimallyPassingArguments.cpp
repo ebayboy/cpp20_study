@@ -1,13 +1,24 @@
-import <vector>;
+
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
 class DataHolder
 {
 public:
-	//void setData(const vector<int>& data) { m_data = data; }
+	DataHolder() 
+	{
+		cout << "construct ...\n";
+	};
+
+	~DataHolder()
+	{
+		cout << "destruct!\n";
+	}
+	void setData(const vector<int>& data) { m_data = data; }
 	//void setData(vector<int>&& data) { m_data = move(data); }
-	void setData(vector<int> data) { m_data = move(data); }
+	//void setData(vector<int> data) { m_data = move(data); }
 
 private:
 	vector<int> m_data;
