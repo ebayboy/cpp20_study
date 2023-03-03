@@ -30,8 +30,9 @@ cpp20_study
 + cpp20 tcp 协程并发服务
 + cpp20 http 协程并发服务
 + vsocde PlantUML使用入门
-+ muduo网络库性能最高(比libevent2性能略高)
-+ libevent2网络库
++ muduo网络库性能最高(比libevent2性能略高, 部分调用C头文件)
++ libevent2网络库(C事件网络库)
++ handy C++11网络库
 
 + dpdk + cpp开发
 + 学习handy网络库, 成为开源贡献者
