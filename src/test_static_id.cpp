@@ -20,14 +20,10 @@ public:
 	{
 		cout << "md_id:" << m_id << endl;
 	}
-	void SetId(int id)
-	{
-		m_id = id;
-	};
 
 private:
 	/* data */
-	int const m_id;
+	int const m_id; //const 类型, 在初始化后不能改变
 	static inline int m_auto_id {0};
 };
 
@@ -36,8 +32,6 @@ int main(int argc, char **argv)
 	for(int i = 0; i < 5; i++)
 	{
 		Demo d;
-		d.Show();
-		d.SetId(10);
 		d.Show();
 	}
 
