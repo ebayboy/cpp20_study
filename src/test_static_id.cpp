@@ -1,5 +1,5 @@
 
-//静态成员auto_id给id赋值
+//利用类的静态成员全局特性，做auto_id, 给id赋值
 
 #include <iostream>
 #include <utility>
