@@ -15,9 +15,16 @@ cpp20_study
 
 ## 近期TODO：
 + cpp adv 5
-+ drogon使用方法
-+ drogon架构
-+ drogon详细代码走读
+
++ 增加增加的web安全的深入 
+	+ sql注入学习
+	+ modsecurity : 
+
++ 学习drogon: 可以哦在基于http的二次应用开发(nginx可替代方案)
+	+ drogon使用方法
+	+ drogon架构
+	+ drogon详细代码走读
+
 
 # TODO:
 + drogon学习

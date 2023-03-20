@@ -9,13 +9,10 @@ using namespace std;
 using namespace CryptoPP;
 
 // g++ test.cpp -lcryptopp  -I /usr/local/include/cryptopp -L /usr/local/lib/
-
-
 void test_base64() 
 {
 	// "CBC Mode Test", without '\0'
 	unsigned char plainText[] = {67, 66, 67, 32, 77, 111, 100, 101, 32, 84, 101, 115, 116};
-
 	string encoded;
 
 	Base64Encoder encoder;
@@ -41,6 +38,16 @@ void test_base64()
 		decoder.Get((CryptoPP::byte *) &decoded[0], decoded.size());
 	}
 	cout << "encoded:" << decoded << endl;
+}
+
+void test_md5()
+{
+
+}
+
+void test_aes()
+{
+
 }
 
 int main()
