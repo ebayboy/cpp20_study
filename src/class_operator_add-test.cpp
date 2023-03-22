@@ -17,9 +17,11 @@ public:
 	return SpreadsheetCell(getData() + c.getData());
     };
 
+#if 0
     SpreadsheetCell operator+(SpreadsheetCell &c) {
 	return SpreadsheetCell(getData() + c.getData());
     };
+#endif
 
     SpreadsheetCell operator+(SpreadsheetCell &c1, SpreadsheetCell &c2) {
 	return SpreadsheetCell(c1.getData() + c.getData());
@@ -34,7 +36,7 @@ private:
 
 int main(int argc, char **argv) {
     SpreadsheetCell s, a;
-#if 0
+#if 1
     SpreadsheetCell s1{2};
     SpreadsheetCell s2{2};
 
