@@ -12,12 +12,13 @@ public:
     SpreadsheetCell(int data) : m_data(data) { fmt::print("construct..."); };
     ~SpreadsheetCell(){};
 
+#if 1
     // 1. 通过add函数实现对象add
     SpreadsheetCell add(SpreadsheetCell &c) {
 	return SpreadsheetCell(getData() + c.getData());
     };
+#else
 
-#if 0
     SpreadsheetCell operator+(SpreadsheetCell &c) {
 	return SpreadsheetCell(getData() + c.getData());
     };
@@ -35,13 +36,20 @@ private:
 };
 
 int main(int argc, char **argv) {
+    SpreadsheetCell s1{2};
+    SpreadsheetCell s2{2};
+    SpreadsheetCell s3;
+
+    s3 = s1 + s2;
+
+    fmt::println("operator+: {}", s3.getData());
+
+#if 0
     SpreadsheetCell s, a;
-#if 1
     SpreadsheetCell s1{2};
     SpreadsheetCell s2{2};
 
     s.setData(1);
-
     fmt::println("data:{}", s.getData());
 
     a = s.add(s1);
@@ -49,10 +57,8 @@ int main(int argc, char **argv) {
 
     a = s + s2;
     fmt::println("operator+: {}", a.getData());
-#else
-    a = s + 3;
+    a = s + s2;
     fmt::println("operator+: {}", a.getData());
-
 #endif
     return 0;
 }
