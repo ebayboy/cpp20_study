@@ -42,17 +42,19 @@ int main(int argc, char **argv) {
     }
 
     array<int, 7> week{};
-    enum class RUN { X = 0, E = 1, T = 2, M = 3, L = 4 };
     int hot_cold = 4;
 
-    week[int(RUN::T)] = t + hot_cold;
-    week[int(RUN::M)] = m + hot_cold;
-    week[int(RUN::L)] = l;
+    int t_m_l_sum = t + m + l + hot_cold * 2;
+    int e_avg = (sum - t_m_l_sum) / 3;
+    fmt::println("sum:{} t:{} m:{} l:{} e_avg:{}", sum, t, m, l, e_avg);
 
-    int t_m_l_sum =
-	std::accumulate(begin(week), end(week), 0, std::plus<int>());
-    float e_avg = (sum - t_m_l_sum) / 3.0;
-    fmt::println("sum:{} t:{} m:{} l:{} e_avg:{:.2f}", sum, t, m, l, e_avg);
+    fmt::println("day1: {}E", e_avg);
+    fmt::println("day2: {}E", e_avg);
+    fmt::println("day3: {}T", t);
+    fmt::println("day4: {}E", e_avg);
+    fmt::println("day5: {}M", m);
+    fmt::println("day6: X");
+    fmt::println("day7 {}L", l);
 
     return 0;
 }
