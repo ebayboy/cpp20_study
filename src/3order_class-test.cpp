@@ -14,7 +14,7 @@ public:
     ~Demo(){};
     int getValue() const { return m_value; };
     auto operator==(Demo const &r) { return (r.getValue() == getValue()); };
-    auto operator<=>(Demo const &r) { return (r.getValue() <=> getValue()); };
+    auto operator<=>(Demo const &r) { return (getValue() > r.getValue()); };
 
 private:
     /* data */
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
     auto res = (d1 == d2);
     fmt::println("res:{}", res);
 
-	auto res1 = d1 > d2;
+	auto res1 = (d1 > d2);
     fmt::println("res1:{}", res1);
 
     return 0;
