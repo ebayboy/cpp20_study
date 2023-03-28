@@ -86,7 +86,13 @@ int main(int argc, char *argv[]) {
     for (;;) {
 	// 6. 等待epoll事件的发生
 	// 返回需要处理的事件数目nfds，如返回0表示已超时。
-	nfds = epoll_wait(epfd, events, 20, 500);
+#if 0	
+		nfds = epoll_wait(epfd, events, 20, 500);
+#else
+
+		nfds = epoll_wait(epfd, events, 0, 500);
+#endif	
+		cout << "nfds:" << nfds << endl;
 
 	// 7. 遍历 && 处理所发生的所有事件
 	for (i = 0; i < nfds; ++i) {
