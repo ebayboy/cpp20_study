@@ -45,8 +45,8 @@ public:
     };
 };
 
-// Base2 为final类， 不允许被继承 
-class Drived3 : public Base2 { };
+// Error: Base2 为final类， 不允许被继承 
+// class Drived3 : public Base2 { };
 
 int main(int argc, char **argv) {
     Drived d;
