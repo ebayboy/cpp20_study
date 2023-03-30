@@ -7,9 +7,11 @@ using namespace std;
 
 class Base {
 	public:
+		//1. 有virtual可以被继承类重写
 		virtual void method1() { fmt::println("Base method1"); }
 		virtual void method2() { fmt::println("Base method2"); }
 
+		//2. 没有virtual, 只能被继承类隐藏， 但是可以通过Base类引用调用Base类的method3
 		void method3() { fmt::println("Base method3"); }
 	
 	private:
@@ -24,8 +26,11 @@ class Drived : public Base {
 
 		//隐式重写, 没有override关键字，不推荐
 		void method2() { fmt::println("Drived method2"); }
-		
+	
+		// 由于Base method3没有virtual关键字， 这里只是隐层了Base的method3方法	
 		void method3() { fmt::println("Drived method3"); }
+
+		void method4() { fmt::println("Drived method4"); }
 };
 
 int main(int argc, char **argv)
@@ -40,6 +45,9 @@ int main(int argc, char **argv)
 	Base & b {d};
 	b.method1(); //Drived method1
 	b.method2(); //Drived method2
+
+	//被隐藏的method3, Base引用可以调用Base的method3方法 
+	b.method3(); //Base method3
 
 	fmt::println("{}:{}", __func__, __LINE__);
 	// 将Drived转换为Base对象
