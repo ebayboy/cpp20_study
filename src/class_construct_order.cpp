@@ -42,7 +42,9 @@ class Drived : public Base {
 
 int main(int argc, char **argv)
 {
-	Drived d;
+	Base *ptr {  new Drived{} }; //如果析构函数不是virtual的， 则删除内存只调用了基类的析构函数，导致内存泄漏
+	delete ptr;
+
 	return 0;
 }
 
