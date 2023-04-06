@@ -6,26 +6,18 @@
 
 using namespace std;
 
-const int EVENTSNUM = 4096;
-
-class Demo
-{
-public:
-	Demo (int event_size): epoll_events_(event_size) {};
-	~Demo (){};
-	void showEventSize() const {
-		fmt::println("event_size:{}", epoll_events_.size());
-	};
-
-private:
-	/* data */
-	std::vector<int> epoll_events_;
-};
-
 int main(int argc, char **argv)
 {
-	Demo d {EVENTSNUM};
-	d.showEventSize();
+	string str {"1.12"};
+
+	string_view sv1 { str };
+	
+	//double num_double = std::stod(str);
+	//cout << "num_double:" << num_double << endl;
+	
+	double num_double = std::stod(string {sv1});
+	cout << "num_double:" << num_double << endl;
+
 
 	return 0;
 }
