@@ -38,6 +38,7 @@ public:
 
 private:
 };
+
 int main(int argc, char **argv) {
     TString ts{"TString"};
     UString us{"UString"};
