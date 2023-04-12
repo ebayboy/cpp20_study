@@ -1,9 +1,9 @@
 
-#include <iostream>
-#include <utility>
 #include <fmt/core.h>
 
 #include <functional>
+#include <iostream>
+#include <utility>
 
 using namespace std;
 
@@ -52,7 +52,7 @@ int main()
 };
 #endif
 
-//4. 包装函数对象
+// 4. 包装函数对象
 
 #if 0
 // 非模板类型
@@ -165,7 +165,7 @@ int main()
 }
 #endif
 
-
+#if 0
 // 7. 拷贝、移动
 int callback(int p)
 {
@@ -187,5 +187,30 @@ int main()
 
 	return 0;
 }
+#endif
 
+// 8. function做参数
+
+int func1(int i, int j)
+{
+	cout << "func1\n";
+	return i-j;
+}
+
+int func2(std::function<int(int,int)> handler)
+{
+	return handler(1,2);
+}
+
+int main() { 
+
+	//用法1
+	std::function<int(int,int)> f = func1;
+	func2(f);
+
+	//用法2
+	func2(func1);
+
+	return 0; 
+}
 
