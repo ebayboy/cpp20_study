@@ -1,15 +1,15 @@
 
-#include <iostream>
 #include <cryptopp/base64.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/filters.h>
 #include <cryptopp/config_int.h>
+#include <iostream>
 
 using namespace std;
 using namespace CryptoPP;
 
 // g++ test.cpp -lcryptopp  -I /usr/local/include/cryptopp -L /usr/local/lib/
-// g++ test.cpp
+// g++ test.cpp -lcryptopp
 void test_base64() 
 {
 	// "CBC Mode Test", without '\0'
