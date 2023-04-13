@@ -22,7 +22,8 @@ using CryptoPP::SHA256;
 using CryptoPP::HexEncoder;
 
 // HMAC在线加密解密工具，用于在线使用HMAC算法将明文转换成密文。HAMC是建立在哈希算法之上的加密算法，也是一种不可逆的加密算法
-// g++ hmac_test.cpp  -lcryptopp
+
+///BUILD:  g++ hmac_test.cpp  -lcryptopp -lfmt
 
 std::string CalcHmacSHA1(std::string_view decodedSecretKey,
 			 std::string_view request) {
@@ -75,9 +76,8 @@ int main() {
     std::string result{
 	"45d8b3eba217ca1b658d0d0025b10a6d11f62209fd9a7dd961b01049145153ca"};
 
-    std::string key1{"61435768-b03tktk"};
-    std::string key2{"1ad8be5c-a5etktk"};
-
+    std::string key1{"b3d16048-25btktk"};
+    std::string key2{"61435768-b03tktk"};
 
 	std::cout << "result:" << result << std::endl;
 
@@ -105,8 +105,43 @@ int main() {
 	StringSource ss4(mac, true, new HexEncoder(new StringSink(encoded)));
 	std::cout << "key2-sha256: " << encoded << std::endl;
 
+	/* 
+	   2) "nf1.zt.fw"
+	   3) "{\"Ip\":\"10.226.143.198\",\"Judge\":\"A06-R08-I138-135-534VANB.JD.LOCAL\",\"TimeStamp\":\"1681377282\",\"Hmac\":\"68a891d5cbf8800902f217991e4ce7e62e8ae632\"}"
+	   1) "message"
+	   2) "nf1.zt.fw"
+	   3) "{\"Judge\":\"A06-R08-I138-135-534VANB.JD.LOCAL\",\"Hmac\":\"2359d78f2e06017490aba2ee03456d2c355ab747\",\"TimeStamp\":\"1681377285\",\"Ip\":\"10.226.143.198\"}"
+	*/
+
+	/*
+        hash.Write([]byte(t.Ip))
+        hash.Write([]byte(t.TimeStamp))
+        hash.Write([]byte(t.Judge))
+        token := hex.EncodeToString(hash.Sum(nil))
+	*/	
+	std::string Ip {"10.226.143.198"};
+	std::string TimeStamp {"1681377282"};
+	std::string Judge {"A06-R08-I138-135-534VANB.JD.LOCAL"};
+	
+	data = Ip + TimeStamp + Judge;
+
+	//验证方法：通过openssl命令 echo -n "10.226.143.1981681377282A06-R08-I138-135-534VANB.JD.LOCAL" | openssl dgst -sha1 -hmac "b3d16048-25btktk"
+	//SHA1(stdin)= 68a891d5cbf8800902f217991e4ce7e62e8ae632
+	std::cout << "hmac:68a891d5cbf8800902f217991e4ce7e62e8ae632\n";
+	mac = CalcHmacSHA1(key1, data);
+	encoded.clear();
+	StringSource ss11(mac, true, new HexEncoder(new StringSink(encoded)));
+	fmt::println("key:{} data:{} hmac:{}", key1, data, encoded);
+
+	mac = CalcHmacSHA1(key2, data);
+	encoded.clear();
+	StringSource ss12(mac, true, new HexEncoder(new StringSink(encoded)));
+	fmt::println("key:{} data:{} hmac:{}", key2, data, encoded);
+
 	return 0;
 }
+
+
 /*
 输出:
 result:45d8b3eba217ca1b658d0d0025b10a6d11f62209fd9a7dd961b01049145153ca
