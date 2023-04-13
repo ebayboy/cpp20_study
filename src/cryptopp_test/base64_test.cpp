@@ -9,6 +9,7 @@ using namespace std;
 using namespace CryptoPP;
 
 // g++ test.cpp -lcryptopp  -I /usr/local/include/cryptopp -L /usr/local/lib/
+// g++ test.cpp
 void test_base64() 
 {
 	// "CBC Mode Test", without '\0'
@@ -40,19 +41,9 @@ void test_base64()
 	cout << "encoded:" << decoded << endl;
 }
 
-void test_md5()
-{
-
-}
-
-void test_aes()
-{
-
-}
 
 int main()
 {
 	test_base64();
-
 	return 0;
 }
