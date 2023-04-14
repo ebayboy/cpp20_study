@@ -1,6 +1,5 @@
 
-
 + base64  [done]
-+ aes
-+ md5
-+ hamc
++ aes  [done]
++ md5 [done]
++ hamc [done]
