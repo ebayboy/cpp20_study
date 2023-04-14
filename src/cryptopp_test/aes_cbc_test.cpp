@@ -13,9 +13,8 @@ using namespace CryptoPP;
 
 /*
 加密：
-echo -n
-'{"org":"token_check","uid":"user1","clientIp":"127.0.0.2","tktLife":2000000000}'
-| openssl enc -e -aes-128-cbc -nosalt -k abcdefgh12345678
+//注意： 此命令在centos和ubuntu上的执行结果不一样
+echo -n '{"org":"token_check","uid":"user1","clientIp":"127.0.0.2","tktLife":2000000000}' | openssl enc -e -aes-128-cbc -nosalt -k abcdefgh12345678 | base64 -w0
 vFUUnB5dTwKkWG/D8Uu/EzfzkbtWUMaCUEnAMtuqUqgF1ovVWhjnF3n5OYNedPEmKzrNLTOYUSHcDze5CSRf+l8wZKKcGD2QE6OJNN6PL9E=
 
 openssl && iv : 若是指定了-K，那么一定要指定-iv，否则就要靠自动生成的，也就是-k,
