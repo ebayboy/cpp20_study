@@ -34,9 +34,17 @@ class Bird {
 class DogBird : public Dog, public Bird {
 	public:
 		//2. 在派生类中重写eat，在重新方法中指定调用哪个基类的eat
+
+#if 0	
+		//2.1 	
 		void eat() override {
 			Dog::eat();
 		};
+#else 
+		//2.2
+		using Dog::eat;
+#endif
+
 };
 
 
