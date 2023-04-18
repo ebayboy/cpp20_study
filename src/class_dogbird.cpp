@@ -12,7 +12,7 @@ class Dog {
 		void bark() {
 			cout << "dog bark\n";
 		};
-		void eat() {
+		void virtual eat() {
 			cout << "dog eat!\n";
 		};
 	private:
@@ -24,7 +24,7 @@ class Bird {
 		void chirp() {
 			cout << "bird chirp!\n";
 		};
-		void eat() {
+		void virtual eat() {
 			cout << "bird eat!\n";
 		};
 	private:
@@ -32,6 +32,11 @@ class Bird {
 };
 
 class DogBird : public Dog, public Bird {
+	public:
+		//2. 在派生类中重写eat，在重新方法中指定调用哪个基类的eat
+		void eat() override {
+			Dog::eat();
+		};
 };
 
 
@@ -42,7 +47,7 @@ int main(int argc, char **argv)
 	db.bark();
 	db.chirp();
 
-	db.eat(); //error: request for member ‘eat’ is ambiguous, Bird和Dog中都有eat，调用会混淆
+	db.eat(); //1. error: request for member ‘eat’ is ambiguous, Bird和Dog中都有eat，调用会混淆
 
 	return 0;
 }
