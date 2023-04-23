@@ -4,6 +4,8 @@
 #include <iostream>
 #include <utility>
 
+// 16.6.4 3.重写基类的private方法
+
 using namespace std;
 
 class Base {
@@ -14,17 +16,20 @@ public:
 
 private:
     int m_gallons{0};
-    int getMilesPerGallon() { return 20; };
+    int virtual getMilesPerGallon() { return 20; };
 };
 
 class Drived : public Base {
-public:
+private: 
+    int getMilesPerGallon() override { return 40; }; //重写基类的getMilesPerGallon方法
 };
 
 int main(int argc, char **argv) {
     Base b{2};
+	fmt::println("getMilesLeft:{}", b.getMilesLeft());
 
-
+	Drived d;
+	fmt::println("getMilesLeft:{}", d.getMilesLeft()); //会调用重写后的私有方法
 
     return 0;
 }
