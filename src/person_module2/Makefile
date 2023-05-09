@@ -1,4 +1,3 @@
-
 # 需要先编译person.o, 编译person.o时会生成gcm.cache/smd.person.gcm
 
 main: person.o main.o
@@ -11,9 +10,8 @@ main.o : main.cpp
 person.o : person.cpp
 	g++ -fPIC -std=c++20 -fmodules-ts -xc++-system-header iostream 
 	g++ -fPIC -std=c++20 -fmodules-ts -xc++-system-header string
-	g++ -fPIC -fmodules-ts -std=c++20 -o person.o -c person.cpp
-
-
+	g++ -fPIC -fmodules-ts -std=c++20 -o person.o -c person.cppm person.cpp
+	g++ -std=c++20 -fmodules person.ixx person.cxx
 
 gcm.cache/smd.person.gcm: person.o
 	@test -f $@ || rm -rf $<
