@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# C++20 module gcm file
+*.gcm
