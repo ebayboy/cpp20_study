@@ -24,12 +24,10 @@ int main() {
         cout << "not set opt2!\n";
     }
 
-#if 0
-	if (opt3 == nullptr) {
-		cout << "opt3 nullptr\n";
+	if (opt3 == nullopt) {
+		cout << "opt3 nullopt\n";
 	} else {
-		cout << "opt3 not nullptr\n";
+		cout << "opt3 not nullopt\n";
 	}
-#endif
 }
 
